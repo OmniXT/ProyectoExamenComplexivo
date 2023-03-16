@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="PostgreSQL35W.postgres"
+  DTS:DTSID="{8551D27D-87E7-4D47-8178-C47A84FBAD20}"
+  DTS:CreationName="ODBC">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="uid=postgres;Dsn=PostgreSQL35W;">
+      <DTS:Password
+        DTS:Name="pwd"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAhaUQct0H4UmRXYRGUrPP9AAAAAACAAAAAAAQZgAAAAEAACAAAADZWnz3ElRfsPnZNBSoOnwQDBK3U93J70ikiZGmY1dFbQAAAAAOgAAAAAIAACAAAAASLVowHntRWTJqUIvyZfYPwKyvjX2GQIG3CdRw8lzR5XAAAACO/07PV6BQyMDhsCkdxmDT3qvyOb18CvdbHvFNGoaQ14U77hJX3Ru/kRm87Ks6TlqJHKh4Kh/i35Ua5vpftAm9y2z8R1RYcP2eC2yOiFnl2lKJPOgCKqXL4pkt8Jf1JA44EDi1w20+BIyMolkKQ8WLQAAAAFPHZWa5SzMsTvcWl6stYRfcNmuDNVgg7e+Fyq+n70iIPDckaSz+IU29hOE1yPepd2953dxxPVW+EoppUeFXHHE=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
