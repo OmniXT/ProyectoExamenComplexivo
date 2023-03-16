@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-M6ILBP4</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAhaUQct0H4UmRXYRGUrPP9AAAAAACAAAAAAAQZgAAAAEAACAAAACbEsV7G0ypG4lsi9IDyO8hPnaGlUh73yRsmQ4v+il2wwAAAAAOgAAAAAIAACAAAADxJtc3wUAwkr+pMyhUk+aQI+f4PcTw3wtokJm51cicdJAAAACcB5sPaguNvXGk5f8HhPEHZ43kRYuTJxldEFyAvRM4aj2nb1jTFJ8fQLTQjsWGyH6reuhZKN8wdavKDMtJe1FrVeYiftMzzkA1e7IJV9YCOep0Y1mmO+57o54SBYNs1nG3QDHVpA03MBpEw1/5LmLTVS/jSdibl41HGMJz34H+E8bCrPslNaxNpqfDuzfb6/hAAAAAedDGvE0OIgBURj9Ss/0RNwPhGYtbKvtd6C/af3sYfNXiDPermZU5MSv1ujVnksh4seGiv7kz6KkqhWvg/4cDmQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAASI/5/glj4ki8vjIoiWzugQAAAAACAAAAAAAQZgAAAAEAACAAAADc3JTBdq6o7hpb8InjqvblqBW7pwaIqTyDeTlhK8W7nAAAAAAOgAAAAAIAACAAAABaWzNq+BQYZcAHw3T8+a8KiKp5W4TbbagzQdkziuS7h5AAAAD4/JGDE1thpvpd3iIi4i5EopmI+TepkJ2qFUbzEeKWTxJcol6yn6/A6FzE7PSS0Lg72YNIyg2oCe+n8gn84GJuurw0DWIa14JweXIOIz3Y2Ebt8GxtgPn4Uo/QNj3APWhqvKBZHpV5fEbvVsb4ZOV2dsQh5i2vPCrBo9GtsJ9Pqqul4fyupTSgQ+tS1nDKxjJAAAAAh9StDXF/rJn4YvTYdtbUHAyxWd3LXmS086juIOb26WgnVBkc2BP3OvDuVrtqIk3qkTETzlA5xGcTgeWo80eEyQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -302,7 +302,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\dorian\Documents\Products_Categories.xlsx;Extended Properties="EXCEL 12.0 XML;HDR=YES";</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\dorian\source\repos\ProyectoExamenComplexivo\Products_Categories.xlsx;Extended Properties="EXCEL 12.0 XML;HDR=YES";</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -317,7 +317,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\dorian\Documents\Products_Categories.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\Users\dorian\source\repos\ProyectoExamenComplexivo\Products_Categories.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -390,7 +390,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\dorian\Documents\Products_Categories.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\Users\dorian\source\repos\ProyectoExamenComplexivo\Products_Categories.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
