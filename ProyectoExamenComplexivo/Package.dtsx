@@ -7,20 +7,54 @@
   DTS:CreatorName="DESKTOP-M6ILBP4\dorian"
   DTS:DTSID="{3099D23F-3789-4E1D-9E93-C03B88AEE255}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.948.0"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{6C73C9B8-00E8-427B-A551-EEB03F26C9FE}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{B99B018F-BDC1-4E95-9EE9-05E6093FD7CC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Inicializar variables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Inicializar variables"
+      DTS:DTSID="{F7A8EBCA-EF48-45D1-BA31-EA6A01224F38}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Inicializar variables"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F9533AB2-25FA-42B9-B920-08A1E6815775}"
+          SQLTask:SqlStatementSource="DECLARE @StartDate INT&#xA;DECLARE @EndDate INT&#xA;&#xA;SELECT @StartDate = CAST(CONVERT(varchar(10), StartDate, 112) AS INT),&#xA;                  @EndDate =  CAST(CONVERT(varchar(10), EndDate, 112) AS INT) &#xA;FROM ReplicationsDates&#xA;WHERE Application = 'Ventas'&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update ReplicationsDates Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Updates ReplicationsDates Table"
+      DTS:DTSID="{E1A459D2-D7E2-4A5D-9155-F04A500E4288}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update ReplicationsDates Table"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F9533AB2-25FA-42B9-B920-08A1E6815775}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="UPDATE [dbo].[ReplicationsDates] &#xA;SET [LastReplicationDate] = GETDATE()&#xA;WHERE [Application] = 'Ventas'&#x9;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Updating DimCategories"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{B04F68D4-5327-4C36-9AA8-7C8B31F09908}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -622,6 +656,7 @@ SELECT CategoryID FROM DimCategories
       DTS:refId="Package\Updating DimCustomers"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{5ef027f0-1bb2-484e-a6d4-900ec1ce5c6b}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -1676,6 +1711,7 @@ SELECT CustomerID FROM DimCustomers
       DTS:refId="Package\Updating DimEmployees"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{2a147c6e-1e9f-42e9-8659-f9e477f0cbf1}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -2978,6 +3014,7 @@ SELECT EmployeeID FROM DimEmployees
       DTS:refId="Package\Updating DimOrders"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{6b7b6691-60e3-49d8-9fe3-7d45c5dbda35}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -3638,6 +3675,7 @@ FROM     Orders</property>
       DTS:refId="Package\Updating DimProducts"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{a8cb3083-95ae-4bee-ad53-47af4bb6fbec}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -4378,7 +4416,7 @@ SELECT ProductID FROM DimProducts
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{F9533AB2-25FA-42B9-B920-08A1E6815775}"
-              SQLTask:SqlStatementSource="DELETE FROM FactSales" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DELETE FROM FactSales&#xA;WHERE TimeKey BETWEEN @StartDate &#xA;                  AND @EndDate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -4877,7 +4915,8 @@ FROM     DimCustomers AS DC INNER JOIN
                       UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT CAST(CONVERT(varchar(10), Orders.OrderDate, 112) AS INT) AS TimeKey, Orders.CustomerID, Orders.OrderID, [Order Details].ProductID, Orders.EmployeeID, [Order Details].UnitPrice, [Order Details].Quantity, [Order Details].Discount, 
                   [Order Details].UnitPrice * [Order Details].Quantity - [Order Details].UnitPrice * [Order Details].Quantity * [Order Details].Discount AS NetSale
 FROM     [Order Details] INNER JOIN
-                  Orders ON [Order Details].OrderID = Orders.OrderID</property>
+                  Orders ON [Order Details].OrderID = Orders.OrderID
+WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @EndDate</property>
                     <property
                       dataType="System.Int32"
                       description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
@@ -5363,6 +5402,22 @@ FROM     [Order Details] INNER JOIN
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
       DTS:To="Package\Updating FactSales" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{E6165BF7-2C6D-4DD4-9205-3CCB8D68AB1E}"
+      DTS:From="Package\Updating FactSales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Update ReplicationsDates Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{A853B5BF-CA3C-4B76-B36D-F8141A8D976E}"
+      DTS:From="Package\Inicializar variables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Updating DimCategories" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -5438,7 +5493,7 @@ FROM     [Order Details] INNER JOIN
           PanelSize="216,273.6"
           Size="216,316.8"
           Id="Package\Updating DimCategories"
-          TopLeft="65.0000011069433,64.2352950185229" />
+          TopLeft="194.629625585555,64.2352950185229" />
         <NodeLayout
           Size="188,41.6"
           Id="Package\Updating DimCustomers\Delete TempCustomers"
@@ -5501,7 +5556,7 @@ FROM     [Order Details] INNER JOIN
           PanelSize="224.8,274.4"
           Size="224.8,317.6"
           Id="Package\Updating DimCustomers"
-          TopLeft="692.085721426108,56.5882360877463" />
+          TopLeft="821.71534590472,56.5882360877463" />
         <NodeLayout
           Size="188.8,41.6"
           Id="Package\Updating DimEmployees\Delete TempEmployees"
@@ -5564,7 +5619,7 @@ FROM     [Order Details] INNER JOIN
           PanelSize="224.8,274.4"
           Size="224.8,317.6"
           Id="Package\Updating DimEmployees"
-          TopLeft="64.489797016622,459.93950029657" />
+          TopLeft="194.119421495233,459.93950029657" />
         <NodeLayout
           Size="170.4,41.6"
           Id="Package\Updating DimOrders\Delete TempOrders"
@@ -5627,7 +5682,7 @@ FROM     [Order Details] INNER JOIN
           PanelSize="224.8,274.4"
           Size="224.8,317.6"
           Id="Package\Updating DimOrders"
-          TopLeft="374.591843113955,461.210085957933" />
+          TopLeft="504.221467592567,461.210085957933" />
         <NodeLayout
           Size="179.2,41.6"
           Id="Package\Updating DimProducts\Delete TempProducts"
@@ -5690,7 +5745,7 @@ FROM     [Order Details] INNER JOIN
           PanelSize="212.8,274.4"
           Size="212.8,317.6"
           Id="Package\Updating DimProducts"
-          TopLeft="376.428577839112,61.1764714462122" />
+          TopLeft="506.058202317724,61.1764714462122" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\Updating FactSales\Delete FactSales"
@@ -5779,10 +5834,10 @@ FROM     [Order Details] INNER JOIN
           PanelSize="224.8,344"
           Size="224.8,387.2"
           Id="Package\Updating FactSales"
-          TopLeft="691.530624021594,454.870590037046" />
+          TopLeft="821.160248500206,454.870590037046" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="281.000001106943,221.305883232368">
+          TopLeft="410.629625585555,221.305883232368">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5804,7 +5859,7 @@ FROM     [Order Details] INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="589.228577839112,217.682353766979">
+          TopLeft="718.858202317724,217.682353766979">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5826,7 +5881,7 @@ FROM     [Order Details] INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="804.485721426108,374.188236087746">
+          TopLeft="934.11534590472,374.188236087746">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5860,7 +5915,7 @@ FROM     [Order Details] INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="289.289797016622,619.374793127251">
+          TopLeft="418.919421495234,619.374793127251">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5882,7 +5937,7 @@ FROM     [Order Details] INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="599.391843113955,620.010085957933">
+          TopLeft="729.021467592567,620.010085957933">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5914,6 +5969,76 @@ FROM     [Order Details] INNER JOIN
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="199.2,48"
+          Id="Package\Update ReplicationsDates Table"
+          TopLeft="515.740720247046,802.888892952601" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="821.160248500206,711.670590037046">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-106.219528253159,115.218302915555"
+              Start="0,0"
+              End="-98.7195282531592,115.218302915555">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-38.7500817413949,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-38.7500817413949,0"
+                    Point2="-42.7500817413949,0"
+                    Point3="-42.7500817413949,4" />
+                  <mssgle:LineSegment
+                    End="-42.7500817413949,111.218302915555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-42.7500817413949,111.218302915555"
+                    Point2="-42.7500817413949,115.218302915555"
+                    Point3="-46.7500817413949,115.218302915555" />
+                  <mssgle:LineSegment
+                    End="-98.7195282531592,115.218302915555" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Inicializar variables"
+          TopLeft="13.8888883369941,103.037037855902" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="96.2888883369941,103.037037855902">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98.3407372485607,119.598257162621"
+              Start="0,0"
+              End="90.8407372485607,119.598257162621">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,115.598257162621" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,115.598257162621"
+                    Point2="0,119.598257162621"
+                    Point3="4,119.598257162621" />
+                  <mssgle:LineSegment
+                    End="90.8407372485607,119.598257162621" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -5921,7 +6046,7 @@ FROM     [Order Details] INNER JOIN
     design-time-name="Package\Updating DimCategories\Insert DimCategories">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="157.6,41.6"
           Id="Package\Updating DimCategories\Insert DimCategories\ADO NET Source"
@@ -5949,7 +6074,9 @@ FROM     [Order Details] INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5975,7 +6102,7 @@ FROM     [Order Details] INNER JOIN
     design-time-name="Package\Updating DimCategories\Insert TempCategories">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="155.2,41.6"
           Id="Package\Updating DimCategories\Insert TempCategories\Excel Categories"
@@ -6003,7 +6130,9 @@ FROM     [Order Details] INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6034,7 +6163,7 @@ FROM     [Order Details] INNER JOIN
     design-time-name="Package\Updating DimCustomers\Insert DimCustomers">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="157.6,41.6"
           Id="Package\Updating DimCustomers\Insert DimCustomers\ADO NET Source"
@@ -6062,7 +6191,9 @@ FROM     [Order Details] INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6088,7 +6219,7 @@ FROM     [Order Details] INNER JOIN
     design-time-name="Package\Updating DimCustomers\Insert TempCustomers">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="159.2,41.6"
           Id="Package\Updating DimCustomers\Insert TempCustomers\ODBC Customers"
@@ -6116,7 +6247,9 @@ FROM     [Order Details] INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6147,7 +6280,7 @@ FROM     [Order Details] INNER JOIN
     design-time-name="Package\Updating DimEmployees\Insert Employees">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="157.6,41.6"
           Id="Package\Updating DimEmployees\Insert Employees\ADO NET Source"
@@ -6175,7 +6308,9 @@ FROM     [Order Details] INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6201,7 +6336,7 @@ FROM     [Order Details] INNER JOIN
     design-time-name="Package\Updating DimEmployees\Insert TempEmployees">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="159.2,41.6"
           Id="Package\Updating DimEmployees\Insert TempEmployees\ODBC Employees"
@@ -6229,7 +6364,9 @@ FROM     [Order Details] INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6260,15 +6397,15 @@ FROM     [Order Details] INNER JOIN
     design-time-name="Package\Updating DimOrders\Insert Orders">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="157.6,41.6"
-          Id="Package\Updating DimOrders\Insert Orders\ADO NET Source"
-          TopLeft="529,100" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="178.4,41.6"
           Id="Package\Updating DimOrders\Insert Orders\ADO NET Destination"
           TopLeft="515,220" />
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\Updating DimOrders\Insert Orders\ADO NET Source"
+          TopLeft="529,100" />
         <EdgeLayout
           Id="Package\Updating DimOrders\Insert Orders.Paths[ADO NET Source Output]"
           TopLeft="606,141.6">
@@ -6288,7 +6425,9 @@ FROM     [Order Details] INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6314,7 +6453,7 @@ FROM     [Order Details] INNER JOIN
     design-time-name="Package\Updating DimOrders\Insert TempOrders">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="184,41.6"
           Id="Package\Updating DimOrders\Insert TempOrders\ADO NET TempOrders"
@@ -6342,7 +6481,9 @@ FROM     [Order Details] INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

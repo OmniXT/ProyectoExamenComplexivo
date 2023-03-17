@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="Excel Connection Manager 2"
   DTS:DTSID="{8FD528A8-AF1C-4CA1-A1F5-64DC13A70ED4}"
