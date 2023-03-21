@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-M6ILBP4.Billing 1"
+  DTS:DTSID="{2200BCE3-6BFE-4D53-B887-5EDCEC4FA66B}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=DESKTOP-M6ILBP4;Initial Catalog=Billing;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-ProyectoExamenComplexivo-{2200BCE3-6BFE-4D53-B887-5EDCEC4FA66B}DESKTOP-M6ILBP4.Billing 1;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

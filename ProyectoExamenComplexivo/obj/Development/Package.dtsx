@@ -11,36 +11,53 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{B99B018F-BDC1-4E95-9EE9-05E6093FD7CC}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{6E1BA8A4-1FC9-4A53-A362-0BC51F074BD9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{37CBE634-3D46-4A3D-988B-5ABC59AAF715}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="EndDate">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FAF5F7B4-2087-4270-B8A9-E2E1B492EADC}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT CAST(CONVERT(varchar(10), StartDate, 112) AS INT) AS StartDate,&#xA;                  CAST(CONVERT(varchar(10), EndDate, 112) AS INT) AS EndDate&#xA;FROM ReplicationsDates&#xA;WHERE Application = 'Ventas'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Query">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT CAST(CONVERT(varchar(10), StartDate, 112) AS INT) AS StartDate,
+                  CAST(CONVERT(varchar(10), EndDate, 112) AS INT) AS EndDate
+FROM ReplicationsDates
+WHERE Application = 'Ventas'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5AD954A3-42B2-487F-8BE2-A70511424FF6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="StartDate">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Inicializar variables"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Inicializar variables"
-      DTS:DTSID="{F7A8EBCA-EF48-45D1-BA31-EA6A01224F38}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Inicializar variables"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{F9533AB2-25FA-42B9-B920-08A1E6815775}"
-          SQLTask:SqlStatementSource="DECLARE @StartDate INT&#xA;DECLARE @EndDate INT&#xA;&#xA;SELECT @StartDate = CAST(CONVERT(varchar(10), StartDate, 112) AS INT),&#xA;                  @EndDate =  CAST(CONVERT(varchar(10), EndDate, 112) AS INT) &#xA;FROM ReplicationsDates&#xA;WHERE Application = 'Ventas'&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Update ReplicationsDates Table"
+      DTS:refId="Package\Update ReplicationsDates"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Updates ReplicationsDates Table"
       DTS:DTSID="{E1A459D2-D7E2-4A5D-9155-F04A500E4288}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Update ReplicationsDates Table"
+      DTS:ObjectName="Update ReplicationsDates"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -54,7 +71,6 @@
       DTS:refId="Package\Updating DimCategories"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{B04F68D4-5327-4C36-9AA8-7C8B31F09908}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -656,7 +672,6 @@ SELECT CategoryID FROM DimCategories
       DTS:refId="Package\Updating DimCustomers"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{5ef027f0-1bb2-484e-a6d4-900ec1ce5c6b}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -1711,7 +1726,6 @@ SELECT CustomerID FROM DimCustomers
       DTS:refId="Package\Updating DimEmployees"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{2a147c6e-1e9f-42e9-8659-f9e477f0cbf1}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -3014,7 +3028,6 @@ SELECT EmployeeID FROM DimEmployees
       DTS:refId="Package\Updating DimOrders"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{6b7b6691-60e3-49d8-9fe3-7d45c5dbda35}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -3675,7 +3688,6 @@ FROM     Orders</property>
       DTS:refId="Package\Updating DimProducts"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{a8cb3083-95ae-4bee-ad53-47af4bb6fbec}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -4415,8 +4427,22 @@ SELECT ProductID FROM DimProducts
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{F9533AB2-25FA-42B9-B920-08A1E6815775}"
-              SQLTask:SqlStatementSource="DELETE FROM FactSales&#xA;WHERE TimeKey BETWEEN @StartDate &#xA;                  AND @EndDate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{730A9C5F-CB0D-45D6-83B9-17C0798D477D}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="DELETE FROM FactSales&#xA;WHERE TimeKey BETWEEN ? AND ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::StartDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="0" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::EndDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="0" />
+            </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -4433,6 +4459,31 @@ SELECT ProductID FROM DimProducts
             <SQLTask:SqlTaskData
               SQLTask:Connection="{F9533AB2-25FA-42B9-B920-08A1E6815775}"
               SQLTask:SqlStatementSource="DELETE FROM TempSales" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Updating FactSales\Initialize variables"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C83DEAF5-950E-4A23-93AF-CDC2CC94F15D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Initialize variables"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{730A9C5F-CB0D-45D6-83B9-17C0798D477D}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="&#xA;SELECT CAST(CONVERT(varchar(10), StartDate, 112) AS INT) AS StartDate,&#xA;                  CAST(CONVERT(varchar(10), EndDate, 112) AS INT) AS EndDate&#xA;FROM ReplicationsDates&#xA;WHERE Application = 'Ventas'&#xA;&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="StartDate"
+                SQLTask:DtsVariableName="User::StartDate" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="EndDate"
+                SQLTask:DtsVariableName="User::EndDate" />
+            </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -4888,7 +4939,7 @@ FROM     DimCustomers AS DC INNER JOIN
           DTS:refId="Package\Updating FactSales\Insert TempSales"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{edc55c6a-da75-4d8c-997b-a01981f036f7}"
+          DTS:DTSID="{079DB8DB-EEAB-4656-88B3-4FA16F8EC9F7}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Insert TempSales"
@@ -4899,245 +4950,255 @@ FROM     DimCustomers AS DC INNER JOIN
               version="1">
               <components>
                 <component
-                  refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails"
-                  componentClassID="Microsoft.ManagedComponentHost"
-                  contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-                  description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
-                  name="ADO NET Orders_OrderDetails"
+                  refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Orders_OrderDetails"
                   usesDispositions="true"
-                  version="4">
+                  version="7">
                   <properties>
-                    <property
-                      dataType="System.String"
-                      description="Specifies the SQL statement used by the component to extract data."
-                      expressionType="Notify"
-                      name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT CAST(CONVERT(varchar(10), Orders.OrderDate, 112) AS INT) AS TimeKey, Orders.CustomerID, Orders.OrderID, [Order Details].ProductID, Orders.EmployeeID, [Order Details].UnitPrice, [Order Details].Quantity, [Order Details].Discount, 
-                  [Order Details].UnitPrice * [Order Details].Quantity - [Order Details].UnitPrice * [Order Details].Quantity * [Order Details].Discount AS NetSale
-FROM     [Order Details] INNER JOIN
-                  Orders ON [Order Details].OrderID = Orders.OrderID
-WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @EndDate</property>
                     <property
                       dataType="System.Int32"
                       description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                      name="CommandTimeout">30</property>
-                    <property
-                      dataType="System.Boolean"
-                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
-                      name="AllowImplicitStringConversion">true</property>
+                      name="CommandTimeout">0</property>
                     <property
                       dataType="System.String"
-                      description="The Source database table name."
-                      expressionType="Notify"
-                      name="TableOrViewName"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Orders"</property>
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT CAST(CONVERT(varchar(10), Orders.OrderDate, 112) AS INT) AS TimeKey, Orders.CustomerID, Orders.OrderID, [Order Details].ProductID, Orders.EmployeeID, [Order Details].UnitPrice, [Order Details].Quantity, [Order Details].Discount, 
+                  [Order Details].UnitPrice * [Order Details].Quantity - [Order Details].UnitPrice * [Order Details].Quantity * [Order Details].Discount AS NetSale
+FROM     [Order Details] INNER JOIN
+                  Orders ON [Order Details].OrderID = Orders.OrderID
+WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN ? AND ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
                     <property
                       dataType="System.Int32"
-                      description="Specify the mode to retrieve external column information"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
                       name="AccessMode"
-                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                      typeConverter="AccessMode">2</property>
                     <property
                       dataType="System.String"
-                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"0:Input",{5AD954A3-42B2-487F-8BE2-A70511424FF6};"1:Input",{37CBE634-3D46-4A3D-988B-5ABC59AAF715};</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Connections[IDbConnection]"
-                      connectionManagerID="{3070D59E-33D7-4188-AB43-32E6770AA8DC}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[DESKTOP-M6ILBP4.Billing]"
-                      description="Managed connection manager"
-                      name="IDbConnection" />
+                      refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Connections[OleDbConnection]"
+                      connectionManagerID="{2200BCE3-6BFE-4D53-B887-5EDCEC4FA66B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[DESKTOP-M6ILBP4.Billing 1]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output]"
-                      name="ADO NET Source Output">
+                      refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[TimeKey]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[TimeKey]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[TimeKey]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[TimeKey]"
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[TimeKey]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[TimeKey]"
                           name="TimeKey"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[CustomerID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[CustomerID]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[CustomerID]"
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
                           length="5"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[CustomerID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[CustomerID]"
                           name="CustomerID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[OrderID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[OrderID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[OrderID]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[OrderID]"
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[OrderID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[OrderID]"
                           name="OrderID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[ProductID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[ProductID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[ProductID]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[ProductID]"
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[ProductID]"
                           name="ProductID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[EmployeeID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[EmployeeID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[EmployeeID]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[EmployeeID]"
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[EmployeeID]"
                           name="EmployeeID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[UnitPrice]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[UnitPrice]"
                           dataType="cy"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[UnitPrice]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[UnitPrice]"
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[UnitPrice]"
                           name="UnitPrice"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[Quantity]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[Quantity]"
                           dataType="i2"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[Quantity]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[Quantity]"
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[Quantity]"
                           name="Quantity"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[Discount]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[Discount]"
                           dataType="r4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[Discount]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[Discount]"
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[Discount]"
                           name="Discount"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[NetSale]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[NetSale]"
                           dataType="r4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[NetSale]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[NetSale]"
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[NetSale]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[NetSale]"
                           name="NetSale"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[TimeKey]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[TimeKey]"
                           dataType="i4"
                           name="TimeKey" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[CustomerID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
                           dataType="wstr"
                           length="5"
                           name="CustomerID" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[OrderID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[OrderID]"
                           dataType="i4"
                           name="OrderID" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[ProductID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
                           dataType="i4"
                           name="ProductID" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[EmployeeID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
                           dataType="i4"
                           name="EmployeeID" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[UnitPrice]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
                           dataType="cy"
                           name="UnitPrice" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[Quantity]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
                           dataType="i2"
                           name="Quantity" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[Discount]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
                           dataType="r4"
                           name="Discount" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].ExternalColumns[NetSale]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].ExternalColumns[NetSale]"
                           dataType="r4"
                           name="NetSale" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output]"
+                      refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
-                      name="ADO NET Source Error Output">
+                      name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[TimeKey]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[TimeKey]"
                           dataType="i4"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[TimeKey]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[TimeKey]"
                           name="TimeKey" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[CustomerID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
                           dataType="wstr"
                           length="5"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[CustomerID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
                           name="CustomerID" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[OrderID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[OrderID]"
                           dataType="i4"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[OrderID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[OrderID]"
                           name="OrderID" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[ProductID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[ProductID]"
                           dataType="i4"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[ProductID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[ProductID]"
                           name="ProductID" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[EmployeeID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
                           dataType="i4"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[EmployeeID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
                           name="EmployeeID" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[UnitPrice]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
                           dataType="cy"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[UnitPrice]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
                           name="UnitPrice" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[Quantity]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[Quantity]"
                           dataType="i2"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[Quantity]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[Quantity]"
                           name="Quantity" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[Discount]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[Discount]"
                           dataType="r4"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[Discount]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[Discount]"
                           name="Discount" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[NetSale]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[NetSale]"
                           dataType="r4"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[NetSale]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[NetSale]"
                           name="NetSale" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -5146,149 +5207,170 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales"
-                  componentClassID="Microsoft.ManagedComponentHost"
-                  contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-                  description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
-                  name="ADO NET TempSales"
+                  refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB TempSales"
                   usesDispositions="true"
-                  version="2">
+                  version="4">
                   <properties>
                     <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
                       dataType="System.String"
-                      description="The Destination database table name."
-                      expressionType="Notify"
-                      name="TableOrViewName"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."TempSales"</property>
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[TempSales]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
-                      description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
-                      expressionType="Notify"
-                      name="BatchSize">0</property>
-                    <property
-                      dataType="System.Int32"
-                      description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
-                      expressionType="Notify"
-                      name="CommandTimeout">30</property>
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
                     <property
                       dataType="System.Boolean"
-                      description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
-                      expressionType="Notify"
-                      name="UseBulkInsertWhenPossible">true</property>
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
                     <property
                       dataType="System.String"
-                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Connections[IDbConnection]"
-                      connectionManagerID="{F9533AB2-25FA-42B9-B920-08A1E6815775}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[DESKTOP-M6ILBP4.SalesDW]"
-                      description="Managed connection manager"
-                      name="IDbConnection" />
+                      refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Connections[OleDbConnection]"
+                      connectionManagerID="{730A9C5F-CB0D-45D6-83B9-17C0798D477D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[DESKTOP-M6ILBP4.SalesDW 1]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input]"
+                      refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
-                      name="ADO NET Destination Input">
+                      name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].Columns[TimeKey]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].Columns[TimeKey]"
                           cachedDataType="i4"
                           cachedName="TimeKey"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[TimeKey]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[TimeKey]" />
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[TimeKey]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[TimeKey]" />
                         <inputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].Columns[CustomerID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].Columns[CustomerID]"
                           cachedDataType="wstr"
                           cachedLength="5"
                           cachedName="CustomerID"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[CustomerID]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[CustomerID]" />
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[CustomerID]" />
                         <inputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].Columns[OrderID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].Columns[OrderID]"
                           cachedDataType="i4"
                           cachedName="OrderID"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[OrderID]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[OrderID]" />
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[OrderID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[OrderID]" />
                         <inputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].Columns[ProductID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].Columns[ProductID]"
                           cachedDataType="i4"
                           cachedName="ProductID"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[ProductID]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[ProductID]" />
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[ProductID]" />
                         <inputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].Columns[EmployeeID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].Columns[EmployeeID]"
                           cachedDataType="i4"
                           cachedName="EmployeeID"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[EmployeeID]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[EmployeeID]" />
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[EmployeeID]" />
                         <inputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].Columns[UnitPrice]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
                           cachedDataType="cy"
                           cachedName="UnitPrice"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[UnitPrice]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[UnitPrice]" />
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
                         <inputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].Columns[Quantity]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].Columns[Quantity]"
                           cachedDataType="i2"
                           cachedName="Quantity"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[Quantity]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[Quantity]" />
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[Quantity]" />
                         <inputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].Columns[Discount]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].Columns[Discount]"
                           cachedDataType="r4"
                           cachedName="Discount"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[Discount]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[Discount]" />
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[Discount]" />
                         <inputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].Columns[NetSale]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].Columns[NetSale]"
                           cachedDataType="r4"
                           cachedName="NetSale"
-                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[NetSale]"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output].Columns[NetSale]" />
+                          externalMetadataColumnId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[NetSale]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output].Columns[NetSale]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[TimeKey]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[TimeKey]"
                           dataType="i4"
                           name="TimeKey" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[CustomerID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
                           dataType="wstr"
                           length="5"
                           name="CustomerID" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[OrderID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[OrderID]"
                           dataType="i4"
                           name="OrderID" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[ProductID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
                           dataType="i4"
                           name="ProductID" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[EmployeeID]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
                           dataType="i4"
                           name="EmployeeID" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[UnitPrice]"
-                          dataType="numeric"
-                          name="UnitPrice"
-                          precision="19"
-                          scale="255" />
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                          dataType="cy"
+                          name="UnitPrice" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[Quantity]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
                           dataType="i2"
                           name="Quantity" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[Discount]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
                           dataType="r4"
                           name="Discount" />
                         <externalMetadataColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input].ExternalColumns[NetSale]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input].ExternalColumns[NetSale]"
                           dataType="numeric"
                           name="NetSale"
                           precision="12"
@@ -5298,22 +5380,22 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Outputs[ADO NET Destination Error Output]"
+                      refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
-                      name="ADO NET Destination Error Output"
-                      synchronousInputId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input]">
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -5324,10 +5406,10 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
               </components>
               <paths>
                 <path
-                  refId="Package\Updating FactSales\Insert TempSales.Paths[ADO NET Source Output]"
-                  endId="Package\Updating FactSales\Insert TempSales\ADO NET TempSales.Inputs[ADO NET Destination Input]"
-                  name="ADO NET Source Output"
-                  startId="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails.Outputs[ADO NET Source Output]" />
+                  refId="Package\Updating FactSales\Insert TempSales.Paths[OLE DB Source Output]"
+                  endId="Package\Updating FactSales\Insert TempSales\OLE DB TempSales.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -5337,27 +5419,35 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Updating FactSales.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{5C4F2FB9-9FC2-4830-91CF-03AB4E064EB6}"
+          DTS:DTSID="{C09E4D4E-3668-4D7D-A34B-F02C18C1B1D8}"
           DTS:From="Package\Updating FactSales\Delete TempSales"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
-          DTS:To="Package\Updating FactSales\Delete FactSales" />
+          DTS:To="Package\Updating FactSales\Initialize variables" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Updating FactSales.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
-          DTS:DTSID="{705B109E-691C-4D51-B90A-DFF719E2769B}"
-          DTS:From="Package\Updating FactSales\Delete FactSales"
+          DTS:DTSID="{A3D05F77-9122-40CB-9D7E-3F9F1BA8920D}"
+          DTS:From="Package\Updating FactSales\Initialize variables"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
-          DTS:To="Package\Updating FactSales\Insert TempSales" />
+          DTS:To="Package\Updating FactSales\Delete FactSales" />
         <DTS:PrecedenceConstraint
-          DTS:refId="Package\Updating FactSales.PrecedenceConstraints[Constraint 2]"
+          DTS:refId="Package\Updating FactSales.PrecedenceConstraints[Constraint 3]"
           DTS:CreationName=""
-          DTS:DTSID="{82d21e13-31a1-4396-b2f3-0a934004075a}"
+          DTS:DTSID="{A995496F-8DD1-434C-B191-7269B8C8F983}"
           DTS:From="Package\Updating FactSales\Insert TempSales"
           DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 2"
+          DTS:ObjectName="Constraint 3"
           DTS:To="Package\Updating FactSales\Insert FactSales" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Updating FactSales.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{0BE0E8EE-EB5C-44BF-B5DE-BEE5025FD749}"
+          DTS:From="Package\Updating FactSales\Delete FactSales"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Updating FactSales\Insert TempSales" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
@@ -5409,15 +5499,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
       DTS:From="Package\Updating FactSales"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 5"
-      DTS:To="Package\Update ReplicationsDates Table" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
-      DTS:CreationName=""
-      DTS:DTSID="{A853B5BF-CA3C-4B76-B36D-F8141A8D976E}"
-      DTS:From="Package\Inicializar variables"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 6"
-      DTS:To="Package\Updating DimCategories" />
+      DTS:To="Package\Update ReplicationsDates" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -5431,6 +5513,10 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
     <LayoutInfo>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="180,48.8"
+          Id="Package\Update ReplicationsDates"
+          TopLeft="523.888868071416,833.318522824063" />
         <NodeLayout
           Size="188,41.6"
           Id="Package\Updating DimCategories\Delete TempCategories"
@@ -5493,33 +5579,33 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
           PanelSize="216,273.6"
           Size="216,316.8"
           Id="Package\Updating DimCategories"
-          TopLeft="194.629625585555,64.2352950185229" />
+          TopLeft="194.629625585555,75.501961774729" />
         <NodeLayout
           Size="188,41.6"
           Id="Package\Updating DimCustomers\Delete TempCustomers"
-          TopLeft="12.6428572644994,27.6764708992519" />
+          TopLeft="20.1428569664763,34.6098042876864" />
         <NodeLayout
           Size="177.6,41.6"
           Id="Package\Updating DimCustomers\Insert DimCustomers"
-          TopLeft="26.9285717934979,177.558825942472" />
+          TopLeft="24.4285718928393,190.558826045787" />
         <NodeLayout
           Size="185.6,41.6"
           Id="Package\Updating DimCustomers\Insert TempCustomers"
-          TopLeft="16.2142858967489,104.911766100095" />
+          TopLeft="19.5476190976276,113.578432835638" />
         <EdgeLayout
           Id="Package\Updating DimCustomers.PrecedenceConstraints[Constraint 1]"
-          TopLeft="107.828571580624,69.2764708992519">
+          TopLeft="113.245238032052,76.2098042876864">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35.6352952008431"
+              EndConnector="0,37.3686285479517"
               Start="0,0"
-              End="0,28.1352952008431">
+              End="0,29.8686285479517">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.1352952008431" />
+                    End="0,29.8686285479517" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5530,18 +5616,18 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Updating DimCustomers.PrecedenceConstraints[Constraint 2]"
-          TopLeft="112.371428845123,146.511766100095">
+          TopLeft="112.788095495233,155.178432835638">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31.047059842377"
+              EndConnector="0,35.3803932101487"
               Start="0,0"
-              End="0,23.547059842377">
+              End="0,27.8803932101487">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.547059842377" />
+                    End="0,27.8803932101487" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5553,8 +5639,8 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="224.8,274.4"
-          Size="224.8,317.6"
+          PanelSize="224.8,284.8"
+          Size="224.8,328"
           Id="Package\Updating DimCustomers"
           TopLeft="821.71534590472,56.5882360877463" />
         <NodeLayout
@@ -5619,7 +5705,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
           PanelSize="224.8,274.4"
           Size="224.8,317.6"
           Id="Package\Updating DimEmployees"
-          TopLeft="194.119421495233,459.93950029657" />
+          TopLeft="194.119421495233,471.206167052776" />
         <NodeLayout
           Size="170.4,41.6"
           Id="Package\Updating DimOrders\Delete TempOrders"
@@ -5682,7 +5768,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
           PanelSize="224.8,274.4"
           Size="224.8,317.6"
           Id="Package\Updating DimOrders"
-          TopLeft="504.221467592567,461.210085957933" />
+          TopLeft="504.221467592567,472.476752714139" />
         <NodeLayout
           Size="179.2,41.6"
           Id="Package\Updating DimProducts\Delete TempProducts"
@@ -5745,37 +5831,63 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
           PanelSize="212.8,274.4"
           Size="212.8,317.6"
           Id="Package\Updating DimProducts"
-          TopLeft="506.058202317724,61.1764714462122" />
+          TopLeft="506.058202317724,67.2431381610924" />
         <NodeLayout
-          Size="156,41.6"
+          Size="157.6,41.6"
           Id="Package\Updating FactSales\Delete FactSales"
-          TopLeft="31.2142861521974,100.982352855379" />
+          TopLeft="51.3068779463826,171.567538601525" />
         <NodeLayout
           Size="163.2,41.6"
           Id="Package\Updating FactSales\Delete TempSales"
-          TopLeft="27.6428575199477,26.9117650061743" />
+          TopLeft="44.3095235243405,22.0969501530948" />
         <NodeLayout
           Size="153.6,41.6"
           Id="Package\Updating FactSales\Insert FactSales"
-          TopLeft="34.785714784447,247.147062212538" />
+          TopLeft="53.0264548003656,330.635951764937" />
         <NodeLayout
           Size="160.8,41.6"
+          Id="Package\Updating FactSales\Initialize variables"
+          TopLeft="45.8777467723264,94.9407437077866" />
+        <NodeLayout
+          Size="160,41.6"
           Id="Package\Updating FactSales\Insert TempSales"
-          TopLeft="31.2142861521977,173.735296477084" />
+          TopLeft="49.0518177815434,252.585188560898" />
         <EdgeLayout
-          Id="Package\Updating FactSales.PrecedenceConstraints[Constraint]"
-          TopLeft="109.228571836073,68.5117650061743">
+          Id="Package\Updating FactSales.PrecedenceConstraints[Constraint 3]"
+          TopLeft="129.439136290955,294.185188560898">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32.4705878492046"
+              EndConnector="0,36.4507632040392"
               Start="0,0"
-              End="0,24.9705878492046">
+              End="0,28.9507632040392">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.9705878492046" />
+                    End="0,28.9507632040392" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Updating FactSales.PrecedenceConstraints[Constraint]"
+          TopLeft="126.093635148333,63.6969501530948">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.2437935546918"
+              Start="0,0"
+              End="0,23.7437935546918">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.7437935546918" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5786,18 +5898,18 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Updating FactSales.PrecedenceConstraints[Constraint 1]"
-          TopLeft="110.414286152198,142.582352855379">
+          TopLeft="128.192312359355,136.540743707787">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31.1529436217049"
+              EndConnector="0,35.026794893738"
               Start="0,0"
-              End="0,23.6529436217049">
+              End="0,27.526794893738">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.6529436217049" />
+                    End="0,27.526794893738" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5807,19 +5919,19 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Updating FactSales.PrecedenceConstraints[Constraint 2]"
-          TopLeft="111.600000468322,215.335296477084">
+          Id="Package\Updating FactSales.PrecedenceConstraints[Constraint 4]"
+          TopLeft="129.579347863963,213.167538601525">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31.8117657354545"
+              EndConnector="0,39.4176499593732"
               Start="0,0"
-              End="0,24.3117657354545">
+              End="0,31.9176499593732">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.3117657354545" />
+                    End="0,31.9176499593732" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5831,24 +5943,24 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="224.8,344"
-          Size="224.8,387.2"
+          PanelSize="256.8,398.4"
+          Size="256.8,441.6"
           Id="Package\Updating FactSales"
-          TopLeft="821.160248500206,454.870590037046" />
+          TopLeft="811.252841486483,473.840960558179" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="410.629625585555,221.305883232368">
+          TopLeft="410.629625585555,229.972549967911">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="95.4285767321687,0"
+              EndConnector="95.4285767321691,0"
               Start="0,0"
-              End="87.9285767321687,0">
+              End="87.9285767321691,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="87.9285767321687,0" />
+                    End="87.9285767321691,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5859,18 +5971,18 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="718.858202317724,217.682353766979">
+          TopLeft="718.858202317724,223.315687124419">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
               EndConnector="102.857143586996,0"
               Start="0,0"
-              End="95.3571435869957,0">
+              End="95.3571435869959,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="95.3571435869957,0" />
+                    End="95.3571435869959,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5881,30 +5993,30 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="934.11534590472,374.188236087746">
+          TopLeft="934.11534590472,384.588236087746">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-627.595924409486,85.7512642088237"
+              EndConnector="-627.595924409487,86.6179309650298"
               Start="0,0"
-              End="-627.595924409486,78.2512642088237">
+              End="-627.595924409487,79.1179309650298">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.8756321044118" />
+                    End="0,39.3089654825149" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,38.8756321044118"
-                    Point2="0,42.8756321044118"
-                    Point3="-4,42.8756321044118" />
+                    Point1="0,39.3089654825149"
+                    Point2="0,43.3089654825149"
+                    Point3="-4,43.3089654825149" />
                   <mssgle:LineSegment
-                    End="-623.595924409486,42.8756321044118" />
+                    End="-623.595924409487,43.3089654825149" />
                   <mssgle:CubicBezierSegment
-                    Point1="-623.595924409486,42.8756321044118"
-                    Point2="-627.595924409486,42.8756321044118"
-                    Point3="-627.595924409486,46.8756321044118" />
+                    Point1="-623.595924409487,43.3089654825149"
+                    Point2="-627.595924409487,43.3089654825149"
+                    Point3="-627.595924409487,47.3089654825149" />
                   <mssgle:LineSegment
-                    End="-627.595924409486,78.2512642088237" />
+                    End="-627.595924409487,79.1179309650298" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5915,7 +6027,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="418.919421495234,619.374793127251">
+          TopLeft="418.919421495234,630.641459883457">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5937,30 +6049,30 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="729.021467592567,620.010085957933">
+          TopLeft="729.021467592567,631.276752714139">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="92.138780907639,28.4605040791133"
+              EndConnector="82.2313738939165,-8.90245882262673"
               Start="0,0"
-              End="84.638780907639,28.4605040791133">
+              End="74.7313738939165,-8.90245882262673">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="42.0693904538195,0" />
+                    End="45.1607058369407,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="42.0693904538195,0"
-                    Point2="46.0693904538195,0"
-                    Point3="46.0693904538195,4" />
+                    Point1="45.1607058369407,0"
+                    Point2="49.1607058369407,0"
+                    Point3="49.1607058369407,-4" />
                   <mssgle:LineSegment
-                    End="46.0693904538195,24.4605040791133" />
+                    End="49.1607058369407,-4.90245882262673" />
                   <mssgle:CubicBezierSegment
-                    Point1="46.0693904538195,24.4605040791133"
-                    Point2="46.0693904538195,28.4605040791133"
-                    Point3="50.0693904538195,28.4605040791133" />
+                    Point1="49.1607058369407,-4.90245882262673"
+                    Point2="49.1607058369407,-8.90245882262673"
+                    Point3="53.1607058369407,-8.90245882262673" />
                   <mssgle:LineSegment
-                    End="84.638780907639,28.4605040791133" />
+                    End="74.7313738939165,-8.90245882262673" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5969,68 +6081,32 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="199.2,48"
-          Id="Package\Update ReplicationsDates Table"
-          TopLeft="515.740720247046,802.888892952601" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="821.160248500206,711.670590037046">
+          TopLeft="811.252841486483,766.907627224846">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-106.219528253159,115.218302915555"
+              EndConnector="-107.363973415067,90.8108955992177"
               Start="0,0"
-              End="-98.7195282531592,115.218302915555">
+              End="-99.8639734150673,90.8108955992177">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-38.7500817413949,0" />
+                    End="-39.1781467091643,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="-38.7500817413949,0"
-                    Point2="-42.7500817413949,0"
-                    Point3="-42.7500817413949,4" />
+                    Point1="-39.1781467091643,0"
+                    Point2="-43.1781467091643,0"
+                    Point3="-43.1781467091643,4" />
                   <mssgle:LineSegment
-                    End="-42.7500817413949,111.218302915555" />
+                    End="-43.1781467091643,86.8108955992177" />
                   <mssgle:CubicBezierSegment
-                    Point1="-42.7500817413949,111.218302915555"
-                    Point2="-42.7500817413949,115.218302915555"
-                    Point3="-46.7500817413949,115.218302915555" />
+                    Point1="-43.1781467091643,86.8108955992177"
+                    Point2="-43.1781467091643,90.8108955992177"
+                    Point3="-47.1781467091643,90.8108955992177" />
                   <mssgle:LineSegment
-                    End="-98.7195282531592,115.218302915555" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Inicializar variables"
-          TopLeft="13.8888883369941,103.037037855902" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="96.2888883369941,103.037037855902">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="98.3407372485607,119.598257162621"
-              Start="0,0"
-              End="90.8407372485607,119.598257162621">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,115.598257162621" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,115.598257162621"
-                    Point2="0,119.598257162621"
-                    Point3="4,119.598257162621" />
-                  <mssgle:LineSegment
-                    End="90.8407372485607,119.598257162621" />
+                    End="-99.8639734150673,90.8108955992177" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6046,7 +6122,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
     design-time-name="Package\Updating DimCategories\Insert DimCategories">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="157.6,41.6"
           Id="Package\Updating DimCategories\Insert DimCategories\ADO NET Source"
@@ -6074,9 +6150,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6163,7 +6237,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
     design-time-name="Package\Updating DimCustomers\Insert DimCustomers">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="157.6,41.6"
           Id="Package\Updating DimCustomers\Insert DimCustomers\ADO NET Source"
@@ -6191,9 +6265,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6219,7 +6291,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
     design-time-name="Package\Updating DimCustomers\Insert TempCustomers">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="159.2,41.6"
           Id="Package\Updating DimCustomers\Insert TempCustomers\ODBC Customers"
@@ -6247,9 +6319,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6509,7 +6579,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
     design-time-name="Package\Updating DimProducts\Insert DimProduct">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="157.6,41.6"
           Id="Package\Updating DimProducts\Insert DimProduct\ADO NET Source"
@@ -6537,7 +6607,9 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6690,27 +6762,39 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="176.8,41.6"
-          Id="Package\Updating FactSales\Insert TempSales\ADO NET TempSales"
-          TopLeft="196,195" />
+          Size="215.2,41.6"
+          Id="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails"
+          TopLeft="367,158" />
         <NodeLayout
-          Size="221.6,41.6"
-          Id="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails"
-          TopLeft="169,68" />
+          Size="172,41.6"
+          Id="Package\Updating FactSales\Insert TempSales\OLE DB TempSales"
+          TopLeft="364,272" />
         <EdgeLayout
-          Id="Package\Updating FactSales\Insert TempSales.Paths[ADO NET Source Output]"
-          TopLeft="282.1,109.6">
+          Id="Package\Updating FactSales\Insert TempSales.Paths[OLE DB Source Output]"
+          TopLeft="474.6,199.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,85.4"
+              EndConnector="-24.6,72.4"
               Start="0,0"
-              End="0,77.9">
+              End="-24.6,64.9">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,77.9" />
+                    End="0,32.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.2"
+                    Point2="0,36.2"
+                    Point3="-4,36.2" />
+                  <mssgle:LineSegment
+                    End="-20.6,36.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.6,36.2"
+                    Point2="-24.6,36.2"
+                    Point3="-24.6,40.2" />
+                  <mssgle:LineSegment
+                    End="-24.6,64.9" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6723,7 +6807,7 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Updating FactSales\Insert TempSales\ADO NET Orders_OrderDetails">
+    design-time-name="Package\Updating FactSales\Insert TempSales\OLE DB Orders_OrderDetails">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -6731,10 +6815,15 @@ WHERE CAST(CONVERT(varchar(10), OrderDate, 112) AS INT) BETWEEN @StartDate AND @
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Updating FactSales\Insert TempSales\ADO NET TempSales">
+    design-time-name="Package\Updating FactSales\Insert TempSales\OLE DB TempSales">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
